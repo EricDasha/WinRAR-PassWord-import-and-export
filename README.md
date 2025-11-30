@@ -1,143 +1,143 @@
-# WinRAR 密码导入导出工具
+# WinRAR Password Import/Export Tool
 
-一个用于备份和恢复 WinRAR 保存密码的实用工具。支持导出和导入 WinRAR 密码注册表项，方便在不同电脑或重装系统后恢复密码。
+A utility tool for backing up and restoring WinRAR saved passwords. Supports exporting and importing WinRAR password registry entries, making it convenient to restore passwords after system reinstallation or on different computers.
 
-## ✨ 功能特性
+## Features
 
-- 🔐 **导出密码**：将 WinRAR 保存的密码导出为注册表文件
-- 📥 **导入密码**：从备份文件恢复 WinRAR 密码
-- 🛡️ **自动权限管理**：自动检测并请求管理员权限
-- 💻 **跨平台支持**：提供 Python 脚本和打包后的 Windows 可执行文件
-- ⚠️ **安全提示**：详细说明密码加密机制和使用限制
+- **Export Passwords**: Export WinRAR saved passwords as registry files
+- **Import Passwords**: Restore WinRAR passwords from backup files
+- **Automatic Permission Management**: Automatically detects and requests administrator privileges
+- **Cross-Platform Support**: Provides Python scripts and packaged Windows executables
+- **Security Warnings**: Detailed explanation of password encryption mechanisms and usage limitations
 
-## 📋 系统要求
+## System Requirements
 
-- Windows 操作系统
-- Python 3.6+（如果使用 Python 脚本）
-- 管理员权限（用于访问注册表）
+- Windows operating system
+- Python 3.6+ (if using Python script)
+- Administrator privileges (for registry access)
 
-## 🚀 快速开始
+## Quick Start
 
-### 方法一：使用可执行文件（推荐）
+### Method 1: Using Executable File (Recommended)
 
-1. 从 [Releases](https://github.com/EricDasha/WinRAR-PassWord-import-and-export/releases) 下载 `WinRAR_Password_Manager.exe`
-2. 双击运行（首次运行需要管理员权限）
-3. 按照菜单提示操作
+1. Download `WinRAR_Password_Manager.exe` from [Releases](https://github.com/EricDasha/WinRAR-PassWord-import-and-export/releases)
+2. Double-click to run (administrator privileges required on first run)
+3. Follow the menu prompts
 
-### 方法二：使用 Python 脚本
+### Method 2: Using Python Script
 
-1. 确保已安装 Python 3.6+
-2. 下载 `WinRAR_Password_Manager.py`
-3. 运行脚本：
+1. Ensure Python 3.6+ is installed
+2. Download `WinRAR_Password_Manager.py`
+3. Run the script:
    ```bash
    python WinRAR_Password_Manager.py
    ```
 
-## 📖 使用说明
+## Usage
 
-### 导出密码
+### Export Passwords
 
-1. 运行程序，选择选项 `1`
-2. 程序会自动导出 WinRAR 密码到 `WinRAR_Passwords.reg` 文件
-3. 请妥善保管此文件（包含加密的密码数据）
+1. Run the program and select option `1`
+2. The program will automatically export WinRAR passwords to `WinRAR_Passwords.reg` file
+3. Keep this file safe (contains encrypted password data)
 
-### 导入密码
+### Import Passwords
 
-1. 确保 `WinRAR_Passwords.reg` 文件在同一目录
-2. 运行程序，选择选项 `2`
-3. 确认导入操作
-4. 打开 WinRAR 测试密码是否可用
+1. Ensure `WinRAR_Passwords.reg` file is in the same directory
+2. Run the program and select option `2`
+3. Confirm the import operation
+4. Open WinRAR to test if passwords are working
 
-## ⚠️ 重要提示
+## Important Notes
 
-### 密码加密机制
+### Password Encryption Mechanism
 
-WinRAR 的密码是**加密存储**的，加密与 Windows 用户账户相关：
+WinRAR passwords are **encrypted** and the encryption is related to Windows user accounts:
 
-- ✅ **可以使用**：同一台电脑的同一用户账户
-- ❌ **可能无法使用**：不同用户账户或不同电脑
+- **Can be used**: Same computer with the same user account
+- **May not work**: Different user accounts or different computers
 
-### 使用场景
+### Usage Scenarios
 
-- ✅ 备份当前用户的 WinRAR 密码
-- ✅ 重装系统后恢复密码（同一用户账户）
-- ❌ 跨电脑迁移密码（加密密钥不同）
+- **Supported**: Backup current user's WinRAR passwords
+- **Supported**: Restore passwords after system reinstallation (same user account)
+- **Not supported**: Migrate passwords across computers (different encryption keys)
 
-### 安全建议
+### Security Recommendations
 
-- 备份文件包含加密的密码数据，请妥善保管
-- 不要将备份文件分享给他人
-- 导入后请测试密码是否可用
+- Backup files contain encrypted password data, keep them safe
+- Do not share backup files with others
+- Test passwords after import to ensure they work
 
-## 🔨 从源码构建
+## Building from Source
 
-### 自动打包（推荐）
+### Automatic Build (Recommended)
 
-Windows 用户可以直接运行：
+Windows users can directly run:
 ```bash
 build.bat
 ```
 
-### 手动打包
+### Manual Build
 
-1. 安装 PyInstaller：
+1. Install PyInstaller:
    ```bash
    pip install pyinstaller
    ```
 
-2. 打包可执行文件：
+2. Build executable:
    ```bash
    pyinstaller --onefile --console --name WinRAR_Password_Manager WinRAR_Password_Manager.py
    ```
 
-3. 可执行文件位于 `dist\WinRAR_Password_Manager.exe`
+3. The executable will be located at `dist\WinRAR_Password_Manager.exe`
 
-详细说明请参考 [README_BUILD.md](README_BUILD.md)
+For detailed instructions, see [README_BUILD.md](README_BUILD.md)
 
-## 📁 项目结构
+## Project Structure
 
 ```
 .
-├── WinRAR_Password_Manager.py    # Python 主程序
-├── build_exe.py                  # 打包脚本
-├── build.bat                     # Windows 一键打包脚本
-├── README.md                     # 项目说明（本文件）
-├── README_BUILD.md               # 打包说明
-└── LICENSE                       # MIT 许可证
+├── WinRAR_Password_Manager.py    # Python main program
+├── build_exe.py                  # Build script
+├── build.bat                     # Windows one-click build script
+├── README.md                     # Project documentation (this file)
+├── README_BUILD.md               # Build instructions
+└── LICENSE                       # MIT License
 ```
 
-## 🛠️ 技术栈
+## Tech Stack
 
 - **Python 3.6+**
-- **PyInstaller**（用于打包）
-- **Windows Registry API**（通过 reg.exe）
+- **PyInstaller** (for packaging)
+- **Windows Registry API** (via reg.exe)
 
-## 📝 许可证
+## License
 
-本项目采用 [MIT 许可证](LICENSE)。
+This project is licensed under the [MIT License](LICENSE).
 
-## 🤝 贡献
+## Contributing
 
-欢迎提交 Issue 和 Pull Request！
+Issues and Pull Requests are welcome!
 
-## ⚡ 常见问题
+## FAQ
 
-### Q: 导入后密码无法使用？
+### Q: Passwords don't work after import?
 
-A: 这通常是因为加密密钥不匹配。WinRAR 密码加密与用户账户相关，只有在同一用户账户下才能正常使用。
+A: This is usually because the encryption keys don't match. WinRAR password encryption is related to user accounts, and will only work under the same user account.
 
-### Q: 打包后的 exe 被杀毒软件报毒？
+### Q: Packaged exe is flagged by antivirus?
 
-A: 这是 PyInstaller 打包文件的常见误报。可以添加白名单或使用源码运行。
+A: This is a common false positive with PyInstaller packaged files. You can add it to whitelist or run from source.
 
-### Q: 支持其他压缩软件的密码吗？
+### Q: Does it support passwords from other compression software?
 
-A: 目前仅支持 WinRAR。其他软件（如 7-Zip、WinZip）的密码存储方式不同。
+A: Currently only WinRAR is supported. Other software (such as 7-Zip, WinZip) use different password storage methods.
 
-## 📞 联系方式
+## Contact
 
-如有问题或建议，请提交 [Issue](https://github.com/EricDasha/WinRAR-PassWord-import-and-export/issues)。
+For questions or suggestions, please submit an [Issue](https://github.com/EricDasha/WinRAR-PassWord-import-and-export/issues).
 
 ---
 
-⭐ 如果这个项目对你有帮助，请给个 Star！
+If this project is helpful to you, please give it a Star!
